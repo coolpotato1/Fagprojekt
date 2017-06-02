@@ -1,4 +1,4 @@
-function [ planecomp] = getCompInPlane(field, s)
+function [ planecomp, x] = getCompInPlane(field, s)
 % Determine which component and plane to be saved to planeComp matrix
 dim1=getFieldColumn(s.dim1_str);
 dim2=getFieldColumn(s.dim2_str);
@@ -18,6 +18,11 @@ for i=1:nf
     end
 end
 
+if(np<10)
+    x=1;
+else
+    x=0;
+end
 % Allocate space for planecomp
 planecomp=zeros(np,3);
 % Put in data to planecomp

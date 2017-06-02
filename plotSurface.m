@@ -1,10 +1,10 @@
-function [] = plotSurface(field, s)
+function [b] = plotSurface(field, s)
 % Plot field component or magnitude as surface in a plane
 % input: field and struct containing plot information
 % Output: none
 
 % Generate data for plot
-data=getCompInPlane(field, s);
+[data, b]=getCompInPlane(field, s);
 % Desired spatial grid
 n=length(data(:,1));
 dp=1;
@@ -20,8 +20,8 @@ surf(g_dim1, g_dim2, B)
 hold on
 plot3(data(:,1), data(:,2), data(:,3), 'o')
 hold off
-xlabel(s.dim1)
-ylabel(s.dim2)
-zlabel(s.comp)
+xlabel(s.dim1_str)
+ylabel(s.dim2_str)
+zlabel(s.B_choice)
 end
 

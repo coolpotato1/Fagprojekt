@@ -22,7 +22,7 @@ function varargout = UI(varargin)
 
 % Edit the above text to modify the response to help UI
 
-% Last Modified by GUIDE v2.5 01-Jun-2017 09:05:59
+% Last Modified by GUIDE v2.5 02-Jun-2017 10:19:27
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -51,7 +51,7 @@ function UI_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to UI (see VARARGIN)
-handles.s=struct('dim1_str', 'x', 'dim2_str', 'y', 'B_choice', 'Bx', 'dim3_min', 19.5, 'dim3_max', 20.5);
+handles.s=struct('dim1_str', 'x', 'dim2_str', 'y', 'B_choice', 'Bx', 'dim3_min', 19.5, 'dim3_max', 20.5, 'sort', 0.02);
 handles.data=csvread('testDataMatrix.csv');
 plot3dScatter(handles.data, handles.s);
 % Choose default command line output for UI
@@ -155,10 +155,14 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-plot3dScatter(handles.data,handles.s);
-
+x=plot3dScatter(handles.data,handles.s);
+if(x==1)
+    msgbox('The selected cut out has less than 10 data values, thus making the plot vague');
+    x=0;
+end
 figure(1);
 plot3dScatter(handles.data,handles.s);
+
 
 
 
@@ -177,7 +181,11 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-plotSurface(handles.data,handles.s);
+x=plotSurface(handles.data,handles.s);
+if(x==1)
+    msgbox('The selected cut out has less than 10 data values, thus making the plot vague');
+    x=0;
+end
 figure(1)
 plotSurface(handles.data,handles.s);
 
@@ -227,3 +235,13 @@ function edit2_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+quiverPlot(handles.data);
+figure(1);
+quiverPlot(handles.data);
