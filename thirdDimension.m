@@ -1,5 +1,5 @@
 function [ dim3 ] = thirdDimension(dim1, dim2)
-% Returns the third dimension
+% Returns the third dimensionk
 %  The function takes two dimensions as input and returns the third.
 % x=1, y=2, z=3
 % Input: dim1, dim2 (example 1 and 2 for x and y)
