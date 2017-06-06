@@ -6,7 +6,11 @@ U_offset=0.0018*[1 1 1 1 1];
 beta=0.5*[1 1 1 1 1];
 B=zeros(length(labviewData(:,1)), 5);
 for i=1:5
-B(:,i)=beta(i)*(labviewData(:,i+3)-U_offset(i));
+    if(mod(i,2)==0)
+        B(:,i)=-1*beta(i)*(labviewData(:,i+3)-U_offset(i));
+    else
+        B(:,i)=beta(i)*(labviewData(:,i+3)-U_offset(i)); 
+    end
 end
 
 %Dette er blot verdens mærkeligste if statements
