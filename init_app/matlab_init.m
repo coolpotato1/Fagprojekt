@@ -6,6 +6,7 @@ start_x=50;
 start_y=50;
 end_x=100;
 end_y=110;
+end_h=20;
 precision=15;
 %probe_size in radius
 probe_size=15;
@@ -107,7 +108,6 @@ else
     end
     
 end
-
 n=length(x);
 x_temp=x;
 y_temp=y;
@@ -135,3 +135,4 @@ hold off
 figure(2);
 %scatter3(x,y,z);
 plot3(x,y,z);
+daspect([1 1 1])
