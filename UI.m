@@ -22,7 +22,7 @@ function varargout = UI(varargin)
 
 % Edit the above text to modify the response to help UI
 
-% Last Modified by GUIDE v2.5 02-Jun-2017 13:13:09
+% Last Modified by GUIDE v2.5 07-Jun-2017 15:59:40
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -52,9 +52,7 @@ function UI_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to UI (see VARARGIN)
 handles.s=struct('dim1_str', 'x', 'dim2_str', 'y', 'B_choice', 'Bx', 'dim3_min', 19.5, 'dim3_max', 20.5, 'sort', 0.02);
-handles.data=csvread('data1.csv');
-handles.field=measVoltages2Field(handles.data);
-plot3dScatter(handles.field, handles.s);
+
 % Choose default command line output for UI
 handles.output = hObject;
 
@@ -294,3 +292,15 @@ function edit4_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+[filename pathname]=uigetfile({'*.csv'}, 'File Selector');
+cd(pathname);
+handles.data=csvread(filename);
+handles.field=measVoltages2Field(handles.data);
+guidata(hObject,handles);
