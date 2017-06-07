@@ -52,8 +52,9 @@ function UI_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to UI (see VARARGIN)
 handles.s=struct('dim1_str', 'x', 'dim2_str', 'y', 'B_choice', 'Bx', 'dim3_min', 19.5, 'dim3_max', 20.5, 'sort', 0.02);
-handles.data=csvread('testDataMatrix.csv');
-plot3dScatter(handles.data, handles.s);
+handles.data=csvread('data1.csv');
+handles.field=measVoltages2Field(handles.data);
+plot3dScatter(handles.field, handles.s);
 % Choose default command line output for UI
 handles.output = hObject;
 
@@ -155,13 +156,13 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-x=plot3dScatter(handles.data,handles.s);
+x=plot3dScatter(handles.field,handles.s);
 if(x==1)
     msgbox('The selected cut out has less than 10 data values, thus making the plot vague');
     x=0;
 end
 figure(1);
-plot3dScatter(handles.data,handles.s);
+plot3dScatter(handles.field,handles.s);
 
 
 
@@ -171,9 +172,9 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-plot4dScatter(handles.data,handles.s);
+plot4dScatter(handles.field,handles.s);
 figure(1);
-plot4dScatter(handles.data,handles.s);
+plot4dScatter(handles.field,handles.s);
 
 
 % --- Executes on button press in pushbutton3.
@@ -181,13 +182,13 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-x=plotSurface(handles.data,handles.s);
+x=plotSurface(handles.field,handles.s);
 if(x==1)
     msgbox('The selected cut out has less than 10 data values, thus making the plot vague');
     x=0;
 end
 figure(1)
-plotSurface(handles.data,handles.s);
+plotSurface(handles.field,handles.s);
 
 
 % --- Executes on slider movement.
@@ -242,9 +243,9 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton4 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-quiverPlot(handles.data);
+quiverPlot(handles.field);
 figure(1);
-quiverPlot(handles.data);
+quiverPlot(handles.field);
 
 
 

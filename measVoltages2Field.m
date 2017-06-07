@@ -14,9 +14,9 @@ for i=1:5
 end
 
 %Dette er blot verdens mærkeligste if statements
-Bx=abs(B(:,1))>abs(B(:,2))*B(:,1)+abs(B(:,1))<abs(B(:,2))*B(:,2);
+Bx=(abs(B(:,1))>=abs(B(:,2))).*B(:,1)+(abs(B(:,1))<abs(B(:,2))).*B(:,2);
 
-By=abs(B(:,3))>abs(B(:,4))*B(:,3)+abs(B(:,3))<abs(B(:,4))*B(:,4);
+By=(abs(B(:,3))>=abs(B(:,4))).*B(:,3)+(abs(B(:,3))<abs(B(:,4))).*B(:,4);
 
 Bz=B(:,5);
 
