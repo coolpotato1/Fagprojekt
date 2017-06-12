@@ -2,9 +2,9 @@
 clear;
 clc;
 %% Load values
-start_x=50;
 start_y=50;
 end_x=100;
+start_x=50;
 end_y=110;
 end_h=20;
 precision=15;
