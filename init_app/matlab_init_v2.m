@@ -113,7 +113,9 @@ if mod(bot_nlodret,2)==1
     y=[y,mod(start_y-probe_size,precision)];
     meas=[meas,0];
 end
-
+x=[x,x(1)];
+y=[y,y(1)];
+meas=[meas,0];
 %% Plot af punkter
 figure(1);
 marg_x=[-probe_size+start_x,probe_size+end_x,probe_size+end_x,-probe_size+start_x];
@@ -142,6 +144,7 @@ for i=hn:-1:1
     z=[z,repmat(end_h-i*precision,1,n)];
     meas=[meas,meas_temp];
 end
+%% Adding remaining layers
 yn=floor(size_y/precision);
 offset_ystart=mod(start_y-probe_size,precision);
 top_x=0:precision:size_x;
@@ -154,12 +157,14 @@ for i=1:1:yn
     end
     top_y=[top_y,repmat(offset_ystart+i*precision,1,length(0:precision:size_x))];
 end
+top_x=[top_x,0];
+top_y=[top_y,offset_ystart];
 zn=floor((height-end_h)/precision);
 for i=0:1:zn
     x=[x,top_x];
     y=[y,top_y];
     z=[z,repmat(end_h+i*precision,1,length(top_x))];
-    meas=[meas,ones(1,length(top_x))];
+    meas=[meas,ones(1,length(top_x)-1),0];
 end    
 
 %% 3d scatter plot
