@@ -3,8 +3,8 @@ function [ C, m_i, m_a ] = plot4dScatter(field, s)
 %represents the magnitude of the B-field at a given point, by color-coding
 %the dots.
 F=getField(field, s);
-maks=max(F(:,4));
-F(F(:,4)<maks*s.sort,:)=[];
+maks=max(abs(F(:,4)));
+F(abs(F(:,4))<maks*s.sort,:)=[];
 m_i=min(log(F(:,4)));
 m_a=max(log(F(:,4)));
 a=1/(m_a-m_i);
@@ -16,6 +16,7 @@ scatter3(F(:,1),F(:,2),F(:,3),20000/length(F),C);
 xlabel('x');
 ylabel('y');
 zlabel('z');
+title(s.B_choice)
 
 end
 
