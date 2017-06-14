@@ -9,8 +9,17 @@ function [ b ] = plot3dScatter(field, s)
 dim3=thirdDimension(getFieldColumn(s.dim1_str),getFieldColumn(s.dim2_str));
 [measurements_2d, b] = getCompInPlane(field, s);
 scatter3(measurements_2d(:,1), measurements_2d(:,2), measurements_2d(:,3), 'blue');
-xlabel(s.dim1_str)
-ylabel(s.dim2_str)
+titl=[s.dim1_str ' [mm]'];
+titl2=[s.dim2_str ' [mm]'];
+if(strcmp(s.B_choice,'abs'))
+    titl3='Strength of the magnetic field [T]';
+else
+    titl3=['Magnetic field component (' s.B_choice ') [T]'];
+end
+xlabel(titl);
+ylabel(titl2);
+zlabel(titl3);
+title('3D scatter plot of the magnetic flux density');
 
 end
 

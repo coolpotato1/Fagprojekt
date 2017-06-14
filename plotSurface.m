@@ -20,8 +20,16 @@ surf(g_dim1, g_dim2, B)
 hold on
 plot3(data(:,1), data(:,2), data(:,3), 'o')
 hold off
-xlabel(s.dim1_str)
-ylabel(s.dim2_str)
-zlabel(s.B_choice)
+titl=[s.dim1_str ' [mm]'];
+titl2=[s.dim2_str ' [mm]'];
+if(strcmp(s.B_choice,'abs'))
+    titl3='Strength of the magnetic field [T]';
+else
+    titl3=['Magnetic field component (' s.B_choice ') [T]'];
+end
+xlabel(titl);
+ylabel(titl2);
+zlabel(titl3);
+title('Surface plot of the magnetic flux density');
 end
 
