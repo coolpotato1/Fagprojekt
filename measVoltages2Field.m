@@ -2,15 +2,12 @@
 function [field] = measVoltages2Field(labviewData)
 
 % Constants
-U_offset=0.0018*[1 1 1 1 1];
-beta=0.5*[1 1 1 1 1];
+%We have only used values based upon ferrite calibration.
+U_offset=[-0.00188 0.0021 0.0021 -0.0005 0.0019];
+beta=[-0.5851 -0.5635 0.5935 0.5593 -0.5608];
 B=zeros(length(labviewData(:,1)), 5);
 for i=1:5
-    if(mod(i,2)==0)
-        B(:,i)=-1*beta(i)*(labviewData(:,i+3)-U_offset(i));
-    else
         B(:,i)=beta(i)*(labviewData(:,i+3)-U_offset(i)); 
-    end
 end
 
 %Dette er blot verdens mærkeligste if statements

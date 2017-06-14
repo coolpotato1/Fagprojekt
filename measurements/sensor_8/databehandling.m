@@ -2,12 +2,8 @@
 clc;
 clear;
 %% load files
-n_sensor='1';
-n_meas='2';
-s_voltages=['measurements/sensor_' n_sensor '/sensor_' n_sensor '_voltages_' n_meas '.csv'];
-s_fields=['measurements/sensor_' n_sensor '/sensor_' n_sensor '_field_' n_meas '.csv'];
-f1=csvread(s_fields);
-v1=csvread(s_voltages);
+f1=csvread('sensor_8_field_2.csv');
+v1=csvread('sensor_8_voltages_2.csv');
 %% Plot of measurements
 figure(1);
 subplot(1,2,1);
@@ -47,6 +43,4 @@ figure(2);
 plot(linear_model)
 grid on
 %%
-my_fit=fitlm(x,y)
-beta=my_fit.Coefficients.Estimate(2)
-U_offset=-my_fit.Coefficients.Estimate(1)/beta
+fitlm(y,x)
