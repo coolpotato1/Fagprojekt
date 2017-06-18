@@ -61,6 +61,6 @@ y_new=v1.*beta+b_new;
 p=plot(v1,y_new,'k');
 scatter([v1_p1,v1_p2,v1_p3,v1_p4],([f1_p1,f1_p2,f1_p3,f1_p4]-b+b_new),'k');
 grid on;
-xlabel('Hall voltage [V]');
-ylabel('Magnetic flux density [T]');
+xlabel('U_{out} [V]');
+ylabel('B_N [T]');
 ylim([-0.3,0.3]);
