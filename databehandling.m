@@ -2,7 +2,7 @@
 clc;
 clear;
 %% load files
-n_sensor='1';
+n_sensor='10';
 n_meas='2';
 s_voltages=['measurements/sensor_' n_sensor '/sensor_' n_sensor '_voltages_' n_meas '.csv'];
 s_fields=['measurements/sensor_' n_sensor '/sensor_' n_sensor '_field_' n_meas '.csv'];
@@ -48,5 +48,19 @@ plot(linear_model)
 grid on
 %%
 my_fit=fitlm(x,y)
+b=my_fit.Coefficients.Estimate(1)
 beta=my_fit.Coefficients.Estimate(2)
 U_offset=-my_fit.Coefficients.Estimate(1)/beta
+%%
+max(abs([v1_p1*beta+b-f1_p1,v1_max*beta+b-f1_p2,v1_p3*beta+b-f1_p3,v1_p4*beta+b-f1_p4]))
+%%
+b_new=-0.00188*beta;
+figure(3);
+hold on;
+y_new=v1.*beta+b_new;
+p=plot(v1,y_new,'k');
+scatter([v1_p1,v1_p2,v1_p3,v1_p4],([f1_p1,f1_p2,f1_p3,f1_p4]-b+b_new),'k');
+grid on;
+xlabel('Hall voltage [V]');
+ylabel('Magnetic flux density [T]');
+ylim([-0.3,0.3]);
