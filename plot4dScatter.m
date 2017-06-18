@@ -23,6 +23,5 @@ else
     titl=sprintf('3D Scatterplot of the magnetic flux density (%s) [T]', s.B_choice);
 end
 title(titl);
-
 end
 
