@@ -18,7 +18,6 @@ figure(1)
 surf(g_dim1, g_dim2, B)
 % Scatter plot measurements
 hold on
-plot3(data(:,1), data(:,2), data(:,3), 'o')
 hold off
 titl=[s.dim1_str ' [mm]'];
 titl2=[s.dim2_str ' [mm]'];
