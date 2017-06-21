@@ -3,7 +3,7 @@ function [field] = measVoltages2Field(labviewData)
 
 % Constants
 %We have only used values based upon ferrite calibration.
-U_offset=[-0.00188 0.0021 0.0021 -0.0005 0.0019];
+U_offset=[-0.00188 0.0021 0.0021 2.2 -2.11];
 beta=[-0.5851 -0.5635 0.5935 0.5593 -0.5608];
 B=zeros(length(labviewData(:,1)), 5);
 for i=1:5
